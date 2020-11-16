@@ -2,6 +2,7 @@ package com.example.restic
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -80,6 +81,8 @@ fun LoginButton() {
                 startActivity(context, Intent(context, WaiterComponent()::class.java), null)
             "admin" ->
                 startActivity(context, Intent(context, AdminComponent()::class.java), null)
+            else ->
+                Toast.makeText(context, "Not correct login", Toast.LENGTH_SHORT).show()
     }
 }, modifier = Modifier.fillMaxWidth()) {
     Text("Войти")
