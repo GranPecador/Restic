@@ -74,13 +74,16 @@ fun LoginButton() {
     val context = ContextAmbient.current
     Button(onClick = { /* Do something! */
         when (MainActivity.login.value) {
-            "user" -> {
+            "user" ->
                 startActivity(context, Intent(context, UserComponent()::class.java), null)
-            }
-        }
-    }, modifier = Modifier.fillMaxWidth()) {
-        Text("Войти")
+            "waiter" ->
+                startActivity(context, Intent(context, WaiterComponent()::class.java), null)
+            "admin" ->
+                startActivity(context, Intent(context, AdminComponent()::class.java), null)
     }
+}, modifier = Modifier.fillMaxWidth()) {
+    Text("Войти")
+}
 }
 
 @Composable
@@ -95,7 +98,10 @@ fun TelephoneTextField() {
         modifier = Modifier.fillMaxWidth(),
         label = { Text(text = "Введите телефон") },
         maxLines = 1,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone,imeAction = ImeAction.Done),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Phone,
+            imeAction = ImeAction.Done
+        ),
         onImeActionPerformed = { action, softwareController ->
             if (action == ImeAction.Done) {
                 softwareController?.hideSoftwareKeyboard()
@@ -115,9 +121,12 @@ fun LoginTextField() {
             loginLocal = it
             MainActivity.login.value = loginLocal.text.trim()
         },
-        label = {Text("Введите логин")},
+        label = { Text("Введите логин") },
         maxLines = 1,
-        keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Text, imeAction = ImeAction.Done),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Done
+        ),
         onImeActionPerformed = { action, softwareController ->
             if (action == ImeAction.Done) {
                 softwareController?.hideSoftwareKeyboard()
@@ -133,15 +142,19 @@ fun PasswordTextField() {
         value = password,
         onValueChange = { it -> password = it },
         modifier = Modifier.fillMaxWidth(),
-        label = {Text(text = "Введите пароль")},
+        label = { Text(text = "Введите пароль") },
         visualTransformation = PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password,imeAction = ImeAction.Done),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password,
+            imeAction = ImeAction.Done
+        ),
         onImeActionPerformed = { action, softwareController ->
             if (action == ImeAction.Done) {
                 softwareController?.hideSoftwareKeyboard()
             }
         },
-        maxLines = 1)
+        maxLines = 1
+    )
 }
 
 @Composable

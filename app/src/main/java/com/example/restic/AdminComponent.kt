@@ -1,4 +1,6 @@
 package com.example.restic
 
-class AdminComponent {
+import androidx.appcompat.app.AppCompatActivity
+
+class AdminComponent : AppCompatActivity() {
 }
